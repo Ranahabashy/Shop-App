@@ -1,0 +1,29 @@
+export type User = {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  username: string;
+};
+
+export type RegisteredUser = User & {
+  password: string;
+};
+
+export type LoginInput = {
+  username: string;
+  password: string;
+};
+
+export type RegisterInput = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  username: string;
+  password: string;
+};
+
+export type AuthSession = {
+  accessToken: string;
+  user: User;
+};
