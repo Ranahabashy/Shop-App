@@ -11,6 +11,7 @@ import { Button } from '@/src/components/ui/button';
 import { AuthShell } from '@/src/components/auth/auth-shell';
 import { serviceContainer } from '@/src/application/services/container';
 import { useAuthStore } from '@/src/lib/auth-store';
+import { PasswordInput } from './passwordInput';
 
 const schema = z.object({
   firstName: z.string().min(2, 'First name is required'),
@@ -73,7 +74,10 @@ export function RegisterForm() {
           <Input placeholder="rana" {...register('username')} />
         </Field>
         <Field label="Password" error={errors.password?.message}>
-          <Input type="password" placeholder="********" {...register('password')} />
+          <PasswordInput
+            placeholder="Enter your password"
+            {...register('password')}
+          />
         </Field>
         {errors.root?.message ? <p className="text-sm text-rose-600 sm:col-span-2">{errors.root.message}</p> : null}
         <div className="sm:col-span-2">

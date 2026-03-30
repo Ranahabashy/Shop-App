@@ -11,9 +11,10 @@ import { Button } from '@/src/components/ui/button';
 import { AuthShell } from '@/src/components/auth/auth-shell';
 import { serviceContainer } from '@/src/application/services/container';
 import { useAuthStore } from '@/src/lib/auth-store';
+import { PasswordInput } from './passwordInput';
 
 const schema = z.object({
-  username: z.string().min(3, 'Username is required'),
+  email: z.string().email('Invalid email address'),
   password: z.string().min(6, 'Password is required')
 });
 
@@ -31,7 +32,7 @@ export function LoginForm() {
   } = useForm<FormValues>({
     resolver: zodResolver(schema),
     defaultValues: {
-      username: '',
+      email: '',
       password: ''
     }
   });
@@ -42,7 +43,7 @@ export function LoginForm() {
       setSession(session);
       router.push('/products');
     } catch {
-      setError('root', { message: 'Invalid username or password.' });
+      setError('root', { message: 'Invalid email or password.' });
     }
   });
 
@@ -60,14 +61,20 @@ export function LoginForm() {
       }
     >
       <form onSubmit={onSubmit} className="space-y-4">
-        <Field label="Username" error={errors.username?.message}>
-          <Input placeholder="Enter your username" {...register('username')} />
+        <Field label="Email" error={errors.email?.message}>
+          <Input
+            type="email"
+            placeholder="Enter your email"
+            {...register('email')}
+          />
         </Field>
 
         <Field label="Password" error={errors.password?.message}>
-          <Input type="password" placeholder="Enter your password" {...register('password')} />
+          <PasswordInput
+            placeholder="Enter your password"
+            {...register('password')}
+          />
         </Field>
-
         {errors.root?.message ? (
           <p className="text-sm text-rose-600">{errors.root.message}</p>
         ) : null}
