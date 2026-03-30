@@ -60,7 +60,7 @@ export function UserProfileDropdown({
             </button>
 
             {isOpen ? (
-                <div className="absolute right-0 mt-2 w-56 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-lg">
+                <div className="absolute right-0 mt-2 w-56 overflow-hidden rounded-[8px] border border-slate-200 bg-white shadow-lg">
                     <div className="border-b border-slate-100 px-4 py-3">
                         <p className="text-sm font-semibold text-slate-800">{fullName}</p>
                         <p className="text-xs text-slate-500">{user?.email}</p>

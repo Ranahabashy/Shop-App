@@ -19,5 +19,5 @@ input, select {
 }
 
 .card-surface {
-  @apply rounded-3xl border border-slate-200 bg-white shadow-soft;
+  @apply rounded-[8px] border border-slate-200 bg-white shadow-soft;
 }

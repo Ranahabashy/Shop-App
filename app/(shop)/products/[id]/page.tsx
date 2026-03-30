@@ -30,19 +30,19 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
           </div>
 
           <div className="grid gap-4 sm:grid-cols-3">
-            <div className="rounded-2xl bg-slate-50 p-4">
+            <div className="rounded-[8px] bg-slate-50 p-4">
               <div className="mb-2 flex items-center gap-2 text-sm font-medium text-slate-500">
                 <BadgeDollarSign className="h-4 w-4" /> Price
               </div>
               <p className="text-xl font-bold text-brand-600">{currency(product.price)}</p>
             </div>
-            <div className="rounded-2xl bg-slate-50 p-4">
+            <div className="rounded-[8px] bg-slate-50 p-4">
               <div className="mb-2 flex items-center gap-2 text-sm font-medium text-slate-500">
                 <Star className="h-4 w-4" /> Rating
               </div>
               <p className="text-xl font-bold text-slate-900">{product.rating}</p>
             </div>
-            <div className="rounded-2xl bg-slate-50 p-4">
+            <div className="rounded-[8px] bg-slate-50 p-4">
               <div className="mb-2 flex items-center gap-2 text-sm font-medium text-slate-500">
                 <Boxes className="h-4 w-4" /> Stock
               </div>
@@ -51,7 +51,7 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
           </div>
 
           {product.brand ? (
-            <div className="rounded-2xl border border-slate-200 p-4 text-sm text-slate-600">
+            <div className="rounded-[8px] border border-slate-200 p-4 text-sm text-slate-600">
               <span className="font-semibold text-slate-900">Brand:</span> {product.brand}
             </div>
           ) : null}

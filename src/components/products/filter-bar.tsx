@@ -152,7 +152,7 @@ export function FilterBar({ categories }: FilterBarProps) {
           onClick={handleSearch}
           disabled={isPending}
           aria-label="Search products"
-          className="absolute right-2 top-1/2 flex -translate-y-1/2 items-center justify-center rounded-md bg-blue-500 p-2 text-white transition hover:bg-blue-600 active:scale-95 disabled:cursor-not-allowed disabled:bg-slate-300"
+          className="absolute right-2 top-1/2 flex -translate-y-1/2 items-center justify-center rounded-[8px] bg-blue-500 p-2 text-white transition hover:bg-blue-600 active:scale-95 disabled:cursor-not-allowed disabled:bg-slate-300"
         >
           <Search className="h-4 w-4" />
         </button>
