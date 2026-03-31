@@ -4,7 +4,7 @@ import type { Product } from '@domain/entities/product';
 import { currency } from '@lib/utils';
 
 export function ProductCard({ product }: { product: Product }) {
-  const isInStock = product.rating ;
+  const isInStock = product.rating;
 
   return (
     <Link
@@ -27,18 +27,21 @@ export function ProductCard({ product }: { product: Product }) {
           {product.category}
         </span>
 
-        {/* title */}
-        <h3 className="line-clamp-2 min-h-[3.5rem] text-base font-semibold text-slate-900">
-          {product.title}
-        </h3>
+        <div className='flex justify-between items-center '>
+          {/* title */}
+          <h3 className="text-base font-semibold text-slate-900">
+            {product.title}
+          </h3>
 
-        {/* stock status */}
-        <span
-          className={`inline-block text-xs font-semibold ${isInStock ? 'text-green-600' : 'text-red-500'
-            }`}
-        >
-          {isInStock ? 'In Stock' : 'Out of Stock'}
-        </span>
+
+          {/* stock status */}
+          <span
+            className={`inline-block text-xs font-semibold ${isInStock ? 'text-green-600' : 'text-red-500'
+              }`}
+          >
+            {isInStock ? 'In Stock' : 'Out of Stock'}
+          </span>
+        </div>
 
         {/* price + rating */}
         <div className="flex items-center justify-between gap-3">
