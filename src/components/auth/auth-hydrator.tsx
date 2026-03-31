@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect } from 'react';
-import { serviceContainer } from '@/src/application/services/container';
-import { useAuthStore } from '@/src/lib/auth-store';
+import { serviceContainer } from '@services/container';
+import { useAuthStore } from '@lib/auth-store';
 
 export function AuthHydrator() {
   const { setSession, clearSession, isAuthenticated } = useAuthStore();

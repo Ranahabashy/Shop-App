@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { ChevronDown, CircleUserRound, LogOut } from 'lucide-react';
-import type { User } from '@/src/domain/entities/auth';
+import type { User } from '@domain/entities/auth';
 
 type UserProfileDropdownProps = {
     user?: User | null;
@@ -41,14 +41,14 @@ export function UserProfileDropdown({
             <button
                 type="button"
                 onClick={() => setIsOpen((prev) => !prev)}
-                className="flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-left shadow-sm transition hover:bg-slate-50"
+                className="flex items-center gap-2 h-11 rounded-[8px] border border-slate-200 bg-white px-6 text-left shadow-sm transition hover:bg-slate-50"
             >
                 <div className="flex h-7 w-7 items-center justify-center rounded-full  text-slate-700 ">
                     <CircleUserRound className="h-5 w-5" />
                 </div>
 
-                <div className="hidden sm:block">
-                    <p className="text-sm font-semibold text-slate-800">
+                <div className="hidden sm:flex flex-col justify-center leading-tight">
+                    <p className="text-sm font-semibold text-slate-800 whitespace-nowrap">
                         {`${user?.firstName ?? ''} ${user?.lastName ?? ''}`.trim() || 'User'}
                     </p>
                 </div>

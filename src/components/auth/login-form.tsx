@@ -5,17 +5,23 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Field } from '@/src/components/ui/field';
-import { Input } from '@/src/components/ui/input';
-import { Button } from '@/src/components/ui/button';
-import { AuthShell } from '@/src/components/auth/auth-shell';
-import { serviceContainer } from '@/src/application/services/container';
-import { useAuthStore } from '@/src/lib/auth-store';
+import { Field } from '@components/ui/field';
+import { Input } from '@components/ui/input';
+import { Button } from '@components/ui/button';
+import { AuthShell } from '@components/auth/auth-shell';
+import { serviceContainer } from '@services/container';
+import { useAuthStore } from '@lib/auth-store';
 import { PasswordInput } from './passwordInput';
 
 const schema = z.object({
-  email: z.string().email('Invalid email address'),
-  password: z.string().min(6, 'Password is required')
+  email: z
+    .string()
+    .min(1, 'Email is required')
+    .email('Invalid email address'),
+  password: z
+    .string()
+    .min(1, 'Password is required')
+    .min(6, 'Password must be at least 6 characters'),
 });
 
 type FormValues = z.infer<typeof schema>;
@@ -31,6 +37,7 @@ export function LoginForm() {
     formState: { errors, isSubmitting }
   } = useForm<FormValues>({
     resolver: zodResolver(schema),
+    mode: 'onChange',
     defaultValues: {
       email: '',
       password: ''
@@ -50,7 +57,6 @@ export function LoginForm() {
   return (
     <AuthShell
       title="Welcome"
-      description="Sign in to continue to your account."
       footer={
         <span>
           No account yet?{' '}
@@ -61,17 +67,21 @@ export function LoginForm() {
       }
     >
       <form onSubmit={onSubmit} className="space-y-4">
-        <Field label="Email" error={errors.email?.message}>
+        <Field label="Email" required error={errors.email?.message}>
           <Input
             type="email"
             placeholder="Enter your email"
+            error={!!errors.email}
+            className={errors.email ? 'border-red-500 focus:ring-red-500' : ''}
             {...register('email')}
           />
         </Field>
 
-        <Field label="Password" error={errors.password?.message}>
+        <Field label="Password" required error={errors.password?.message}>
           <PasswordInput
             placeholder="Enter your password"
+            error={!!errors.password}
+            className={errors.password ? 'border-red-500 focus:ring-red-500' : ''}
             {...register('password')}
           />
         </Field>

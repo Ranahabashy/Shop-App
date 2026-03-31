@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, BadgeDollarSign, Boxes, Star } from 'lucide-react';
-import { serviceContainer } from '@/src/application/services/container';
-import { currency } from '@/src/lib/utils';
+import { serviceContainer } from '@services/container';
+import { currency } from '@lib/utils';
 
 export default async function ProductDetailsPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -42,12 +42,12 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
               </div>
               <p className="text-xl font-bold text-slate-900">{product.rating}</p>
             </div>
-            <div className="rounded-[8px] bg-slate-50 p-4">
+            {/* <div className="rounded-[8px] bg-slate-50 p-4">
               <div className="mb-2 flex items-center gap-2 text-sm font-medium text-slate-500">
                 <Boxes className="h-4 w-4" /> Stock
               </div>
               <p className="text-xl font-bold text-slate-900">{product.stock}</p>
-            </div>
+            </div> */}
           </div>
 
           {product.brand ? (

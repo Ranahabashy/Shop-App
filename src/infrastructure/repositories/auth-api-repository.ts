@@ -1,6 +1,6 @@
-import type { AuthRepository } from '@/src/domain/repositories/auth-repository';
-import type { AuthSession, LoginInput, RegisterInput, User } from '@/src/domain/entities/auth';
-import { appHttpClient } from '@/src/infrastructure/http/http-client';
+import type { AuthRepository } from '@domain/repositories/auth-repository';
+import type { AuthSession, LoginInput, RegisterInput, User } from '@domain/entities/auth';
+import { appHttpClient } from '@infrastructure/http/http-client';
 
 export class AuthApiRepository implements AuthRepository {
   async login(input: LoginInput): Promise<AuthSession> {

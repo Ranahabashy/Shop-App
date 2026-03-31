@@ -1,6 +1,8 @@
+'use client';
+
 import { ReactNode } from 'react';
 
-export function AuthShell({ title, description, footer, children }: { title: string; description: string; footer: ReactNode; children: ReactNode; }) {
+export function AuthShell({ title, footer, children }: { title: string; footer: ReactNode; children: ReactNode; }) {
   return (
     <div className="container-page grid min-h-[calc(100vh-4rem)] items-center py-10">
       <div className="hidden lg:block">
@@ -17,7 +19,7 @@ export function AuthShell({ title, description, footer, children }: { title: str
       <div className="card-surface mx-auto w-full max-w-xl p-6 sm:p-8">
         <div className="mb-6 space-y-2">
           <h2 className="text-2xl font-bold tracking-tight">{title}</h2>
-          <p className="text-sm text-slate-500">{description}</p>
+          {/* <p className="text-sm text-slate-500">{description}</p> */}
         </div>
         {children}
         <div className="mt-6 text-sm text-slate-500">{footer}</div>

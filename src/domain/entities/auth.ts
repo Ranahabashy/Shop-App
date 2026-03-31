@@ -3,7 +3,6 @@ export type User = {
   firstName: string;
   lastName: string;
   email: string;
-  username: string;
 };
 
 export type RegisteredUser = User & {
@@ -19,7 +18,6 @@ export type RegisterInput = {
   firstName: string;
   lastName: string;
   email: string;
-  username: string;
   password: string;
 };
 

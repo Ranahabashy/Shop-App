@@ -1,28 +1,53 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import type { Product } from '@/src/domain/entities/product';
-import { currency } from '@/src/lib/utils';
+import type { Product } from '@domain/entities/product';
+import { currency } from '@lib/utils';
 
 export function ProductCard({ product }: { product: Product }) {
+  const isInStock = product.rating ;
+
   return (
-    <Link href={`/products/${product.id}`} className="group card-surface overflow-hidden transition hover:-translate-y-1">
-      <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-100">
+    <Link
+      href={`/products/${product.id}`}
+      className="group card-surface overflow-hidden transition hover:-translate-y-1"
+    >
+      <div className="relative h-56 overflow-hidden bg-slate-100">
         <Image
-          src={product.thumbnail}
+          src={product.images[0] ?? product.thumbnail}
           alt={product.title}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
           className="object-cover transition duration-500 group-hover:scale-105"
         />
       </div>
+
       <div className="space-y-3 p-4">
+        {/* category */}
         <span className="inline-flex rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium capitalize text-slate-600">
           {product.category}
         </span>
-        <h3 className="line-clamp-2 min-h-[3.5rem] text-base font-semibold text-slate-900">{product.title}</h3>
+
+        {/* title */}
+        <h3 className="line-clamp-2 min-h-[3.5rem] text-base font-semibold text-slate-900">
+          {product.title}
+        </h3>
+
+        {/* stock status */}
+        <span
+          className={`inline-block text-xs font-semibold ${isInStock ? 'text-green-600' : 'text-red-500'
+            }`}
+        >
+          {isInStock ? 'In Stock' : 'Out of Stock'}
+        </span>
+
+        {/* price + rating */}
         <div className="flex items-center justify-between gap-3">
-          <span className="text-lg font-bold text-brand-600">{currency(product.price)}</span>
-          <span className="text-sm text-slate-500">⭐ {product.rating}</span>
+          <span className="text-lg font-bold text-brand-600">
+            {currency(product.price)}
+          </span>
+          <span className="text-sm text-slate-500">
+            ⭐ {product.rating}
+          </span>
         </div>
       </div>
     </Link>

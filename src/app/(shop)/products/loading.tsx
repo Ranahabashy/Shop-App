@@ -1,4 +1,4 @@
-import { ProductCardSkeleton } from '@/src/components/ui/product-card-skeleton';
+import { ProductCardSkeleton } from '@components/ui/product-card-skeleton';
 
 export default function LoadingProductsPage() {
   return (

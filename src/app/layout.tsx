@@ -1,13 +1,16 @@
 import './globals.css';
 import { ReactNode } from 'react';
-import { Providers } from '@/src/components/providers';
-import { Header } from '@/src/components/layout/header';
-import { AuthHydrator } from '@/src/components/auth/auth-hydrator';
-import { APP_NAME } from '@/src/lib/constants';
+import { Providers } from '@/components/providers/providers';
+import { Header } from '@components/layout/header';
+import { AuthHydrator } from '@components/auth/auth-hydrator';
+import { APP_NAME } from '@lib/constants';
 
 export const metadata = {
   title: APP_NAME,
-  description: 'Responsive product app with auth, clean architecture, and reusable components.'
+  description: 'Everything you need, all in one place',
+  icons: {
+    icon: '/shop-icon.svg',
+  },
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

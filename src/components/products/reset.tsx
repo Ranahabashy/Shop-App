@@ -4,9 +4,10 @@ import { useEffect, useRef, useState, useTransition } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Search } from 'lucide-react';
 import toast from 'react-hot-toast';
-import { Input } from '@/src/components/ui/input';
-import { Button } from '@/src/components/ui/button';
-import { Select } from '@/src/components/ui/select';
+import { Input } from '@components/ui/input';
+import { Button } from '@components/ui/button';
+import { Select } from '@components/ui/select';
+import { RiResetLeftFill } from 'react-icons/ri';
 
 type FilterBarProps = {
   categories: string[];
@@ -103,23 +104,7 @@ export function FilterBar({ categories }: FilterBarProps) {
     }
   };
 
-  const handleSearch = () => {
-    pushFilters({
-      search: searchValue,
-      category: selectedCategory,
-      action: searchValue.trim() ? 'search' : 'filter',
-    });
-  };
 
-  const handleCategoryChange = (value: string) => {
-    setSelectedCategory(value);
-
-    pushFilters({
-      search: searchValue,
-      category: value,
-      action: 'filter',
-    });
-  };
 
   const handleReset = () => {
     setSearchValue('');
@@ -133,46 +118,15 @@ export function FilterBar({ categories }: FilterBarProps) {
   };
 
   return (
-    <div className="card-surface grid gap-4 p-4 lg:grid-cols-[1fr_220px_auto]">
-      <div className="relative">
-        <Input
-          value={searchValue}
-          className="pr-14"
-          placeholder="Search by product title"
-          onChange={(event) => setSearchValue(event.target.value)}
-          onKeyDown={(event) => {
-            if (event.key === 'Enter') {
-              handleSearch();
-            }
-          }}
-        />
-
-        <button
-          type="button"
-          onClick={handleSearch}
-          disabled={isPending}
-          aria-label="Search products"
-          className="absolute right-2 top-1/2 flex -translate-y-1/2 items-center justify-center rounded-[8px] bg-blue-500 p-2 text-white transition hover:bg-blue-600 active:scale-95 disabled:cursor-not-allowed disabled:bg-slate-300"
-        >
-          <Search className="h-4 w-4" />
-        </button>
-      </div>
-
-      <Select
-        value={selectedCategory}
-        onChange={(event) => handleCategoryChange(event.target.value)}
+    <div className="flex items-center gap-2">
+      <Button
+        variant="secondary"
+        onClick={handleReset}
         disabled={isPending}
+        className="flex items-center gap-2 px-3 py-2"
       >
-        <option value="all">All categories</option>
-        {categories.map((category) => (
-          <option key={category} value={category}>
-            {category}
-          </option>
-        ))}
-      </Select>
-
-      <Button variant="secondary" onClick={handleReset} disabled={isPending}>
-        Reset filters
+        <RiResetLeftFill className="h-4 w-4" />
+        <span className="text-sm">Reset</span>
       </Button>
     </div>
   );

@@ -1,11 +1,27 @@
+'use client';
+
 import { ReactNode } from 'react';
 
-export function Field({ label, error, children }: { label: string; error?: string; children: ReactNode }) {
+type FieldProps = {
+  label: string;
+  error?: string;
+  required?: boolean; 
+  children: ReactNode;
+};
+
+export function Field({ label, error, required, children }: FieldProps) {
   return (
     <label className="flex flex-col gap-2">
-      <span className="text-sm font-medium text-slate-700">{label}</span>
+      <span className="text-sm font-medium text-slate-700">
+        {label}
+        {required && <span className="ml-1 text-red-500">*</span>} 
+      </span>
+
       {children}
-      {error ? <span className="text-xs text-rose-600">{error}</span> : null}
+
+      {error ? (
+        <span className="text-xs text-red-500">{error}</span>
+      ) : null}
     </label>
   );
 }

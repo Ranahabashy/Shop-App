@@ -1,4 +1,4 @@
-import type { Product, ProductsResponse } from '@/src/domain/entities/product';
+import type { Product, ProductsResponse } from '@domain/entities/product';
 
 export type ProductsQuery = {
   search?: string;

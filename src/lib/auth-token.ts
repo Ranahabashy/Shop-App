@@ -1,5 +1,5 @@
 import { SignJWT, jwtVerify } from 'jose';
-import type { User } from '@/src/domain/entities/auth';
+import type { User } from '@domain/entities/auth';
 
 const secret = new TextEncoder().encode(process.env.JWT_SECRET ?? 'solid-shop-secret');
 

@@ -1,5 +1,5 @@
-import type { AuthRepository } from '@/src/domain/repositories/auth-repository';
-import type { RegisterInput } from '@/src/domain/entities/auth';
+import type { AuthRepository } from '@domain/repositories/auth-repository';
+import type { RegisterInput } from '@domain/entities/auth';
 
 export class RegisterUserUseCase {
   constructor(private readonly repository: AuthRepository) {}

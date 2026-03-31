@@ -1,4 +1,4 @@
-import type { RegisteredUser } from '@/src/domain/entities/auth';
+import type { RegisteredUser } from '@domain/entities/auth';
 
 const initialUsers: RegisteredUser[] = [
   {
@@ -6,7 +6,6 @@ const initialUsers: RegisteredUser[] = [
     firstName: 'Demo',
     lastName: 'User',
     email: 'demo@solidshop.dev',
-    username: 'demo',
     password: 'Demo@12345'
   }
 ];

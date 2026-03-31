@@ -1,12 +1,12 @@
-import { AuthApiRepository } from '@/src/infrastructure/repositories/auth-api-repository';
-import { ProductApiRepository } from '@/src/infrastructure/repositories/product-api-repository';
-import { GetCategoriesUseCase } from '@/src/application/use-cases/get-categories';
-import { GetCurrentUserUseCase } from '@/src/application/use-cases/get-current-user';
-import { GetProductDetailsUseCase } from '@/src/application/use-cases/get-product-details';
-import { GetProductsUseCase } from '@/src/application/use-cases/get-products';
-import { LoginUserUseCase } from '@/src/application/use-cases/login-user';
-import { LogoutUserUseCase } from '@/src/application/use-cases/logout-user';
-import { RegisterUserUseCase } from '@/src/application/use-cases/register-user';
+import { AuthApiRepository } from '@infrastructure/repositories/auth-api-repository';
+import { ProductApiRepository } from '@infrastructure/repositories/product-api-repository';
+import { GetCategoriesUseCase } from '@usecases/get-categories';
+import { GetCurrentUserUseCase } from '@usecases/get-current-user';
+import { GetProductDetailsUseCase } from '@usecases/get-product-details';
+import { GetProductsUseCase } from '@usecases/get-products';
+import { LoginUserUseCase } from '@usecases/login-user';
+import { LogoutUserUseCase } from '@usecases/logout-user';
+import { RegisterUserUseCase } from '@usecases/register-user';
 
 const productRepository = new ProductApiRepository();
 const authRepository = new AuthApiRepository();

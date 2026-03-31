@@ -1,7 +1,7 @@
 'use client';
 
 import { create } from 'zustand';
-import type { User } from '@/src/domain/entities/auth';
+import type { User } from '@domain/entities/auth';
 
 type AuthState = {
   user: User | null;

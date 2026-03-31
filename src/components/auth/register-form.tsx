@@ -5,19 +5,18 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Field } from '@/src/components/ui/field';
-import { Input } from '@/src/components/ui/input';
-import { Button } from '@/src/components/ui/button';
-import { AuthShell } from '@/src/components/auth/auth-shell';
-import { serviceContainer } from '@/src/application/services/container';
-import { useAuthStore } from '@/src/lib/auth-store';
+import { Field } from '@components/ui/field';
+import { Input } from '@components/ui/input';
+import { Button } from '@components/ui/button';
+import { AuthShell } from '@components/auth/auth-shell';
+import { serviceContainer } from '@services/container';
+import { useAuthStore } from '@lib/auth-store';
 import { PasswordInput } from './passwordInput';
 
 const schema = z.object({
   firstName: z.string().min(2, 'First name is required'),
   lastName: z.string().min(2, 'Last name is required'),
   email: z.string().email('Enter a valid email'),
-  username: z.string().min(3, 'Username must be at least 3 characters'),
   password: z.string().min(8, 'Password must be at least 8 characters')
 });
 
@@ -41,14 +40,13 @@ export function RegisterForm() {
       setSession(session);
       router.push('/products');
     } catch {
-      setError('root', { message: 'This username or email already exists.' });
+      setError('root', { message: 'This email already exists.' });
     }
   });
 
   return (
     <AuthShell
       title="Create account"
-      description="This uses a mock registration endpoint so you can fully demonstrate the task flow."
       footer={
         <span>
           Already registered?{' '}
@@ -59,23 +57,35 @@ export function RegisterForm() {
       }
     >
       <form onSubmit={onSubmit} className="grid gap-4 sm:grid-cols-2">
-        <Field label="First name" error={errors.firstName?.message}>
-          <Input placeholder="Rana" {...register('firstName')} />
+        <Field label="First name" required error={errors.firstName?.message}>
+          <Input
+            type="text"
+            placeholder="Enter your first name"
+            error={!!errors.firstName}
+            {...register('firstName')}
+          />
         </Field>
-        <Field label="Last name" error={errors.lastName?.message}>
-          <Input placeholder="Elhabashy" {...register('lastName')} />
+        <Field label="Last name" required error={errors.lastName?.message}>
+          <Input
+            type="text"
+            placeholder="Enter your last name"
+            error={!!errors.lastName}
+            {...register('lastName')}
+          />
         </Field>
-        <div className="sm:col-span-2">
-          <Field label="Email" error={errors.email?.message}>
-            <Input type="email" placeholder="name@example.com" {...register('email')} />
-          </Field>
-        </div>
-        <Field label="Username" error={errors.username?.message}>
-          <Input placeholder="rana" {...register('username')} />
+        <Field label="Email" required error={errors.email?.message}>
+          <Input
+            type="email"
+            placeholder="name@example.com"
+            error={!!errors.email}
+            {...register('email')}
+          />
         </Field>
-        <Field label="Password" error={errors.password?.message}>
+
+        <Field label="Password" required error={errors.password?.message}>
           <PasswordInput
             placeholder="Enter your password"
+            error={!!errors.password}
             {...register('password')}
           />
         </Field>
