@@ -62,9 +62,9 @@ export function Header() {
             <UserProfileDropdown user={user} onLogout={handleLogout} />
           ) : (
             <>
-              <Link href="/products" className={getLinkClass('/products')}>
+              {/* <Link href="/products" className={getLinkClass('/products')}>
                 Products
-              </Link>
+              </Link> */}
               <Link href="/login" className={getLinkClass('/login')}>
                 Login
               </Link>
