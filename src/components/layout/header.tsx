@@ -33,7 +33,7 @@ export function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-[9999] border-b border-slate-200 bg-white/90">
+    <header className="sticky top-0 z-[9999] border-b border-slate-200 bg-white/90 backdrop-blur">
       <div className="container-page flex h-16 items-center gap-4">
         <Link
           href="/products"
@@ -48,9 +48,9 @@ export function Header() {
 
           {isAuthPage ? (
             <>
-              <a href="/products" className={getLinkClass('/products')}>
+              <Link href="/products" className={getLinkClass('/products')}>
                 Products
-              </a>
+              </Link>
               <Link href="/login" className={getLinkClass('/login')}>
                 Login
               </Link>
@@ -62,9 +62,9 @@ export function Header() {
             <UserProfileDropdown user={user} onLogout={handleLogout} />
           ) : (
             <>
-              <a href="/products" className={getLinkClass('/products')}>
+              <Link href="/products" className={getLinkClass('/products')}>
                 Products
-              </a>
+              </Link>
               <Link href="/login" className={getLinkClass('/login')}>
                 Login
               </Link>
