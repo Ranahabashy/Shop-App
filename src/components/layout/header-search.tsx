@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState, useTransition } from 'react';
+import { Suspense, useEffect, useRef, useState, useTransition } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Search, X } from 'lucide-react';
 import toast from 'react-hot-toast';
@@ -40,11 +40,7 @@ function HeaderSearchInner() {
     }, [isOpen]);
 
     useEffect(() => {
-        if (isOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
-        }
+        document.body.style.overflow = isOpen ? 'hidden' : '';
 
         return () => {
             document.body.style.overflow = '';
@@ -146,41 +142,35 @@ function HeaderSearchInner() {
                             onClick={() => setIsOpen(false)}
                         />
 
-                        <div className="absolute inset-x-0 top-80 z-[10000] px-4">
-                            <div className="mx-auto w-full max-w-md rounded-[12px] bg-white p-4 shadow-2xl">
-                                <div className="mb-3 flex items-center justify-between">
-                                    <h3 className="text-sm font-semibold text-slate-900">
-                                        Search Products
-                                    </h3>
+                        <button
+                            type="button"
+                            onClick={() => setIsOpen(false)}
+                            aria-label="Close search"
+                            className="absolute right-4 top-4 z-[10001] flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-sm hover:bg-white/20"
+                        >
+                            <X className="h-5 w-5" />
+                        </button>
 
-                                    <button
-                                        type="button"
-                                        onClick={() => setIsOpen(false)}
-                                        className="flex h-9 w-9 items-center justify-center rounded-lg text-slate-600 hover:bg-slate-100"
-                                    >
-                                        <X className="h-5 w-5" />
-                                    </button>
-                                </div>
+                        <div className="absolute inset-0 z-[10000] flex items-center justify-center px-4">
+                            <div className="relative mx-auto w-full max-w-md">
+                                <Input
+                                    ref={inputRef}
+                                    value={searchValue}
+                                    onChange={(e) => setSearchValue(e.target.value)}
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Enter') handleSearch();
+                                    }}
+                                    placeholder="Search products..."
+                                    className="h-12 rounded-[12px] border border-white/20 bg-white pr-12 shadow-xl"
+                                />
 
-                                <div className="relative">
-                                    <Input
-                                        ref={inputRef}
-                                        value={searchValue}
-                                        onChange={(e) => setSearchValue(e.target.value)}
-                                        onKeyDown={(e) => {
-                                            if (e.key === 'Enter') handleSearch();
-                                        }}
-                                        placeholder="Search products..."
-                                        className="pr-12"
-                                    />
-
-                                    <button
-                                        onClick={handleSearch}
-                                        className="absolute right-2 top-1/2 -translate-y-1/2 rounded-[8px] bg-blue-500 p-2 text-white hover:bg-blue-600"
-                                    >
-                                        <Search className="h-4 w-4" />
-                                    </button>
-                                </div>
+                                <button
+                                    type="button"
+                                    onClick={handleSearch}
+                                    className="absolute right-2 top-1/2 flex -translate-y-1/2 items-center justify-center rounded-[8px] bg-blue-500 p-2 text-white hover:bg-blue-600"
+                                >
+                                    <Search className="h-4 w-4" />
+                                </button>
                             </div>
                         </div>
                     </div>,
@@ -189,8 +179,6 @@ function HeaderSearchInner() {
         </>
     );
 }
-
-import { Suspense } from 'react';
 
 export function HeaderSearch() {
     return (
