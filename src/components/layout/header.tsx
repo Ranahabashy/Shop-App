@@ -28,13 +28,12 @@ export function Header() {
         ? pathname === '/products' || pathname.startsWith('/products/')
         : pathname === href;
 
-    return `text-sm font-medium transition ${
-      isActive ? 'text-brand-600' : 'text-slate-600 hover:text-slate-900'
-    }`;
+    return `text-sm font-medium transition ${isActive ? 'text-brand-600' : 'text-slate-600 hover:text-slate-900'
+      }`;
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur">
+    <header className="sticky top-0 z-[9999] border-b border-slate-200 bg-white/90">
       <div className="container-page flex h-16 items-center gap-4">
         <Link
           href="/products"
@@ -45,13 +44,13 @@ export function Header() {
         </Link>
 
         <nav className="flex flex-1 items-center justify-end gap-2">
-            <HeaderSearch />
+          <HeaderSearch />
 
           {isAuthPage ? (
             <>
-              <Link href="/products" className={getLinkClass('/products')}>
+              <a href="/products" className={getLinkClass('/products')}>
                 Products
-              </Link>
+              </a>
               <Link href="/login" className={getLinkClass('/login')}>
                 Login
               </Link>
@@ -63,9 +62,9 @@ export function Header() {
             <UserProfileDropdown user={user} onLogout={handleLogout} />
           ) : (
             <>
-              <Link href="/products" className={getLinkClass('/products')}>
+              <a href="/products" className={getLinkClass('/products')}>
                 Products
-              </Link>
+              </a>
               <Link href="/login" className={getLinkClass('/login')}>
                 Login
               </Link>
